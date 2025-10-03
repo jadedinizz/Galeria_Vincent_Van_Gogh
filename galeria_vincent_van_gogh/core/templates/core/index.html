@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Galeria Vicent Van Gogh{% endblock %}
+
+{% block content %}
+  <h2>Todas as Obras</h2>
+
+
+  <form method="get" id="filtro-form">
+    <label for="categoria">Filtrar por categoria:</label>
+    <select name="categoria" id="categoria" onchange="document.getElementById('filtro-form').submit();">
+      <option value="">Todas</option>
+      {% for cat in categorias %}
+        <option value="{{ cat.id }}" {% if cat.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>
+          {{ cat.nome }}
+        </option>
+      {% endfor %}
+    </select>
+  </form>
+
+ 
+  <div class="galeria">
+    {% for obra in obras %}
+    <a href="{% url 'detalhe_imagem' obra.id %}">
+      <div class="item">
+        <img src="{{ obra.imagem.url }}" alt="{{ obra.titulo }}" 
+             class="hover-img" onclick="abrirModal('{{ obra.imagem.url }}')">
+        <p><strong>{{ obra.titulo }}</strong></p>
+        <small>{{ obra.categoria.nome }}</small>
+      </div>
+    </a>
+    {% empty %}
+      <p>Nenhuma obra cadastrada.</p>
+    {% endfor %}
+  </div>
+
+ 
+  <div id="modal" class="modal" onclick="fecharModal()">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <img id="modal-img" class="modal-content">
+  </div>
+{% endblock %}

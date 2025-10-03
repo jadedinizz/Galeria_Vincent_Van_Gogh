@@ -1,0 +1,20 @@
+# Arquivos compilados do Python
+*.pyc
+__pycache__/
+
+# Diretórios de mídia (imagens enviadas)
+media/
+
+# Arquivos estáticos coletados
+staticfiles/
+
+# Ambientes virtuais
+venv/
+ENV/
+.env
+
+# Logs
+*.log
+
+# Configurações do VSCode
+.vscode/

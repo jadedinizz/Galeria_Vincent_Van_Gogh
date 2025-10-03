@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+{% block content %}
+  <h2>{{ imagem.titulo }}</h2>
+  <img src="{{ imagem.imagem.url }}" alt="{{ imagem.titulo }}" style="max-width:100%">
+  <p>{{ imagem.descricao }}</p>
+  <a href="{% url 'index' %}">Voltar</a>
+
+
+  <form action="{% url 'deletar_imagem' imagem.id %}" method="get" style="display:inline;">
+    <button type="submit" style="background-color:red; color:white; border:none; padding:8px 16px; cursor:pointer;">
+      Delete
+    </button>
+  </form>
+{% endblock %}
+

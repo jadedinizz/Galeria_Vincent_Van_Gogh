@@ -1,0 +1,139 @@
+/* ---------- Estilo geral ---------- */
+body { 
+  font-family: "Segoe UI", Tahoma, sans-serif; 
+  margin: 0;
+  background: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background: #2a15a0;
+  color: #fff;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+nav a {
+  color: #fff;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+nav a:hover {
+  opacity: 0.8;
+}
+
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ---------- Filtro ---------- */
+form#filtro-form {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+form#filtro-form label {
+  font-weight: bold;
+}
+
+form#filtro-form select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* ---------- Galeria ---------- */
+.galeria { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+  gap: 18px; 
+}
+
+.item { 
+  background: #fff; 
+  padding: 10px; 
+  border-radius: 8px; 
+  text-align: center; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+}
+
+.hover-img { 
+  width: 100%; 
+  height: 180px; 
+  object-fit: cover; 
+  border-radius: 6px; 
+  transition: transform .25s ease;
+  cursor: pointer; 
+}
+
+.hover-img:hover { 
+  transform: scale(1.2); 
+}
+
+.item p {
+  margin: 10px 0 4px;
+  font-weight: bold;
+}
+
+.item small {
+  color: #666;
+}
+
+/* ---------- Modal ---------- */
+.modal { 
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0,0,0,0.9); 
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column;
+  padding: 20px;
+}
+
+.modal-content { 
+  max-width: 90%; 
+  max-height: 90vh; 
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.close { 
+  position: absolute; 
+  top: 50px; 
+  right: 60px; 
+  font-size: 60px; 
+  font-weight: bold;
+  color: #fff; 
+  cursor: pointer; 
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #ddd;
+}
