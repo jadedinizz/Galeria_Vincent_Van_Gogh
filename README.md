@@ -64,6 +64,7 @@ GALERIA_VINCENT_VAN_GOGH/
 │── docker-compose.yml
 └── .gitignore
 ```
+---
 
 ## 🎯 Expectativas do Projeto
 
@@ -72,31 +73,32 @@ GALERIA_VINCENT_VAN_GOGH/
 - Filtros funcionando sem recarregar a página (JavaScript).
 - Banco conectado e funcionando.
 
+--- 
 ## 🚀 Como Rodar o Projeto Localmente
 
 **1. Clonar repositório:**
-
+```
 git clone https://github.com/jadedinizz/Galeria_Vincent_Van_Gogh.git
 cd Galeria_Vincent_Van_Gogh
-
+```
 **2. Criar ambiente virtual:**
-
+```
 python -m venv venv
 source venv/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
-
+```
 **3. Instalar dependências:**
-
+```
 pip install -r requirements.txt
-
+```
 **4. Migrar banco de dados:**
-
+```
 python manage.py migrate
-
+```
 **5. Rodar servidor:**
-
+```
 python manage.py runserver
-
+```
 👉 Acesse em: [http://localhost:8000](http://localhost:8000)
 
 
