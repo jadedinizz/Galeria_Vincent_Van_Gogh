@@ -99,6 +99,6 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
-👉 Acesse em: [http://localhost:8000](http://localhost:8000)
+👉 Acesse em: [http://localhost:8000/index/](http://localhost:8000/index/)
 
 
