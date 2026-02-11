@@ -1,6 +1,6 @@
 # 🎨 Galeria Vincent Van Gogh
 
-Uma **galeria de imagens com filtros** das obras de Vincent van Gogh, onde o usuário pode navegar pelas pinturas organizadas por categorias, visualizar detalhes em modal e explorar os trabalhos do artista de forma simples e intuitiva.
+Uma **galeria de imagens com filtros** das obras de Vincent van Gogh, onde o usuário pode navegar pelas pinturas organizadas por gênero, visualizar detalhes em modal e explorar os trabalhos do artista de forma simples e intuitiva.
 
 ---
 
@@ -16,10 +16,10 @@ Uma **galeria de imagens com filtros** das obras de Vincent van Gogh, onde o usu
 
 ## ✨ Funcionalidades Principais
 - ✅ Exibição das obras em galeria (grid de imagens).  
-- ✅ Filtros por categoria (autoretrato, arles, ciprestes, flores e noite estrelada).  
+- ✅ Filtros por categoria (autoretrato, retrato, flores, natureza morta e paisagem).  
 - ✅ Efeito hover para exibir título/ano da obra.  
 - ✅ Modal para ampliar a imagem e mostrar detalhes.  
-- ✅ CRUD das obras no sistema (título, imagem, descrição e categoria).  
+- ✅ CRUD das obras no sistema (título, imagem, data e gênero).  
 
 ---
 
@@ -47,7 +47,7 @@ GALERIA_VINCENT_VAN_GOGH/
 │   │   ├── detalhe.html
 │   │   ├── form_image.html
 │   │   └── confirmar_delete.html
-│   ├── models.py          # Modelo da Obra
+│   ├── models.py          # Tabelas adicionadas ao banco 
 │   ├── views.py           # Lógica da aplicação
 │   ├── urls.py
 │   └── forms.py
@@ -62,6 +62,7 @@ GALERIA_VINCENT_VAN_GOGH/
 │── requirements.txt
 │── Dockerfile
 │── docker-compose.yml
+│── .env
 └── .gitignore
 ```
 ---
