@@ -1,15 +1,16 @@
 services:
   db:
-    image: postgres:15
+    image: postgres:16.11
+    container_name: galeria_vincent_van_gogh-db-1
     restart: always
-    environment:
-      POSTGRES_DB: galeria_vangogh
-      POSTGRES_USER: jade
-      POSTGRES_PASSWORD: 12345
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: galeria_vangogh_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
     ports:
-      - "5433:5432"
+      - "5436:5432"
 
   web:
     build: .
@@ -18,16 +19,17 @@ services:
       - .:/code
       - media_volume:/code/media
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
-      POSTGRES_DB: galeria_vangogh
-      POSTGRES_USER: jade
-      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: galeria_vangogh_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
       POSTGRES_HOST: db
-      POSTGRES_PORT: 5432
+      POSTGRES_PORT: "5432"
     depends_on:
       - db
 
 volumes:
   postgres_data:
   media_volume:
+

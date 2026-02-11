@@ -7,12 +7,12 @@
 
 
   <form method="get" id="filtro-form">
-    <label for="categoria">Filtrar por categoria:</label>
-    <select name="categoria" id="categoria" onchange="document.getElementById('filtro-form').submit();">
+    <label for="genero">Filtrar por genero:</label>
+    <select name="genero" id="genero" onchange="document.getElementById('filtro-form').submit();">
       <option value="">Todas</option>
-      {% for cat in categorias %}
-        <option value="{{ cat.id }}" {% if cat.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>
-          {{ cat.nome }}
+      {% for gen in generos %}
+        <option value="{{ gen.id }}" {% if gen.id|stringformat:"s" == request.GET.genero %}selected{% endif %}>
+          {{ gen.nome }}
         </option>
       {% endfor %}
     </select>
@@ -26,7 +26,7 @@
         <img src="{{ obra.imagem.url }}" alt="{{ obra.titulo }}" 
              class="hover-img" onclick="abrirModal('{{ obra.imagem.url }}')">
         <p><strong>{{ obra.titulo }}</strong></p>
-        <small>{{ obra.categoria.nome }}</small>
+        <small>{{ obra.genero.nome }}</small>
       </div>
     </a>
     {% empty %}

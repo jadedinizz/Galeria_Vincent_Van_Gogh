@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Obra, Categoria
+from .models import Obra, Genero
 from .forms import ImagemForm
 
 def index(request):
-    categoria_id = request.GET.get('categoria')
-    if categoria_id:
-        obras = Obra.objects.filter(categoria_id=categoria_id)
+
+    generos = Genero.objects.all()
+
+    genero_id = request.GET.get('genero')
+    if genero_id:
+        obras = Obra.objects.filter(genero_id=genero_id)
     else:
         obras = Obra.objects.all()
-    categorias = Categoria.objects.all()
-    return render(request, "core/index.html", {"obras": obras, "categorias": categorias})
-
+        generos = Genero.objects.all()
+    return render(request, "core/index.html", {"obras": obras, "generos": generos})
 def detalhe_imagem(request, pk):
     imagem = get_object_or_404(Obra, pk=pk)
     return render(request, "core/detalhe.html", {"imagem": imagem})
