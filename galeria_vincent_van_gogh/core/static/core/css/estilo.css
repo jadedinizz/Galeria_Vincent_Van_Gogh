@@ -1,14 +1,20 @@
 /* ---------- Estilo geral ---------- */
-body { 
-  font-family: "Segoe UI", Tahoma, sans-serif; 
+body.background { 
+  font-family: "Montserrat", Tahoma, sans-serif; 
   margin: 0;
-  background: #f5f5f5;
-  color: #333;
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0,0,0,0.2)),
+    url("../img/background.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
 }
 
+
 header {
-  background: #2a15a0;
-  color: #fff;
+  background: #0a3058;
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
@@ -16,8 +22,10 @@ header {
 }
 
 header h1 {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6em;
   margin: 0;
-  font-size: 1.5rem;
 }
 
 nav a {
@@ -25,17 +33,19 @@ nav a {
   margin-left: 15px;
   text-decoration: none;
   font-weight: bold;
-  transition: opacity 0.2s;
+  transition: color 0.2s;
 }
 
 nav a:hover {
-  opacity: 0.8;
+  color: rgb(199, 169, 0);
 }
+
 
 main {
   padding: 20px;
   max-width: 1200px;
   margin: auto;
+  
 }
 
 /* ---------- Filtro ---------- */
@@ -47,48 +57,55 @@ form#filtro-form {
 }
 
 form#filtro-form label {
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+  font-size: 1.4em;
+  margin: 0;
 }
 
 form#filtro-form select {
-  padding: 6px 10px;
+  padding: 4px 10px;
   border-radius: 6px;
+  background: #cec0a6; 
   border: 1px solid #ccc;
-  font-size: 0.95rem;
+  font-size: 1.0rem;
   cursor: pointer;
+
 }
 
 /* ---------- Galeria ---------- */
 .galeria { 
   display: grid; 
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-  gap: 18px; 
+  gap: 20px; 
 }
 
 .item { 
-  background: #fff; 
+  background: #cec0a6; 
   padding: 10px; 
-  border-radius: 8px; 
+  border-radius: 12px; 
   text-align: center; 
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(3, 226, 246, 0.451);
+  transition: transform 0.3s ease;
 }
 
 .item:hover {
-  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgb(3, 226, 246);
+  transform: translateY(-5px);
+  transform: scale(1.1);
+  background-color: rgb(199, 169, 0);
 }
 
 .hover-img { 
   width: 100%; 
-  height: 180px; 
+  height: 200px; 
   object-fit: cover; 
-  border-radius: 6px; 
+  border-radius: 5px; 
   transition: transform .25s ease;
   cursor: pointer; 
-}
-
-.hover-img:hover { 
-  transform: scale(1.2); 
 }
 
 .item p {

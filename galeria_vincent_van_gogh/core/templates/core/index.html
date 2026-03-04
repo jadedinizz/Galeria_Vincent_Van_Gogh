@@ -1,15 +1,12 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% block title %}Galeria Vicent Van Gogh{% endblock %}
-
 {% block content %}
-  <h2>Todas as Obras</h2>
-
 
   <form method="get" id="filtro-form">
-    <label for="genero">Filtrar por genero:</label>
+    <label for="genero">Filtrar por gênero:</label>
     <select name="genero" id="genero" onchange="document.getElementById('filtro-form').submit();">
-      <option value="">Todas</option>
+      <option value="">Todos</option>
       {% for gen in generos %}
         <option value="{{ gen.id }}" {% if gen.id|stringformat:"s" == request.GET.genero %}selected{% endif %}>
           {{ gen.nome }}
