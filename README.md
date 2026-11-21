@@ -1,4 +1,4 @@
-# Galeria Vincent van Gogh
+# Galeria Vincent Van Gogh
 
 A galeria em React mostra obras, filtra por gênero e permite cadastrar, editar e excluir registros com imagens. O Django REST Framework expõe os dados da galeria, e o PostgreSQL armazena os registros.
 

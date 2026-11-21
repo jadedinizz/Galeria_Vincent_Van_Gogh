@@ -86,7 +86,7 @@ export function App() {
   return (
     <>
       <header>
-        <h1>Galeria Vincent van Gogh</h1>
+        <h1>Galeria Vincent Van Gogh</h1>
         <button onClick={() => { setErro(''); setEdicao({}); }}>Adicionar obra</button>
       </header>
       <main>
