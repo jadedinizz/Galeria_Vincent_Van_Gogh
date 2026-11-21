@@ -1,10 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { CardObra } from './components/CardObra.jsx';
+import { FiltrosObras } from './components/FiltrosObras.jsx';
 import { ModalObra } from './components/ModalObra.jsx';
 import { excluirObra, listarGeneros, listarObras, salvarObra } from './api.js';
+
+function normalizarTitulo(texto) {
+  return texto.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('pt-BR');
+}
 
 export function App() {
   const [generos, setGeneros] = useState([]);
   const [genero, setGenero] = useState('');
+  const [busca, setBusca] = useState('');
   const [obras, setObras] = useState([]);
   const [selecao, setSelecao] = useState(null);
   const [edicao, setEdicao] = useState(null);
@@ -57,6 +64,9 @@ export function App() {
     }
   }
 
+  const termo = normalizarTitulo(busca.trim());
+  const obrasVisiveis = obras.filter((obra) => normalizarTitulo(obra.titulo).includes(termo));
+
   return (
     <>
       <header>
@@ -66,24 +76,31 @@ export function App() {
       <main>
         {erro && !edicao && <p role="alert">{erro}</p>}
         <h2>Obras</h2>
-        <div className="filtro">
-          <label htmlFor="filtro-genero">Filtrar por gênero</label>
-          <select id="filtro-genero" value={genero} onChange={(event) => { setErro(''); setGenero(event.target.value); }}>
-            <option value="">Todos</option>
-            {generos.map((item) => <option key={item.id} value={item.id}>{item.nome}</option>)}
-          </select>
-        </div>
+        <FiltrosObras
+          busca={busca}
+          genero={genero}
+          generos={generos}
+          onBusca={setBusca}
+          onGenero={(valor) => { setErro(''); setGenero(valor); }}
+          onLimpar={() => {
+            setBusca('');
+            if (genero) {
+              setErro('');
+              setGenero('');
+            }
+          }}
+        />
         {carregando ? <p role="status">Carregando obras…</p> : (
-          <div className="galeria">
-            {!obras.length && !erro && <p>Nenhuma obra cadastrada.</p>}
-            {obras.map((obra) => (
-              <button className="item" key={obra.id} onClick={() => { setErro(''); setSelecao(obra); }}>
-                {obra.imagem_url && <img className="hover-img" src={obra.imagem_url} alt="" />}
-                <strong>{obra.titulo}</strong>
-                <small>{[obra.genero_nome, obra.date?.slice(0, 4)].filter(Boolean).join(' · ')}</small>
-              </button>
-            ))}
-          </div>
+          <>
+            {!obrasVisiveis.length && !erro && (
+              <p role="status">{termo || genero ? 'Nenhuma obra encontrada.' : 'Nenhuma obra cadastrada.'}</p>
+            )}
+            <div className="galeria">
+              {obrasVisiveis.map((obra) => (
+                <CardObra key={obra.id} obra={obra} onAbrir={(item) => { setErro(''); setSelecao(item); }} />
+              ))}
+            </div>
+          </>
         )}
       </main>
       {edicao && (

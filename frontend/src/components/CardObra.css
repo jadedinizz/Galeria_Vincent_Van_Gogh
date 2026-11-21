@@ -1,0 +1,57 @@
+.card-obra {
+  display: grid;
+  align-content: start;
+  gap: .5rem;
+  min-width: 0;
+  padding: .75rem;
+  border: 1px solid #cec0a6;
+  border-radius: 12px;
+  background: #fffaf1;
+  color: #0a3058;
+  text-align: left;
+  overflow-wrap: anywhere;
+  box-shadow: 0 2px 6px rgb(3 226 246 / 35%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.card-obra:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgb(3 226 246 / 65%);
+}
+
+.card-obra:focus-visible {
+  outline: 2px solid #03e2f6;
+  outline-offset: 3px;
+}
+
+.card-obra-imagem,
+.card-obra-sem-imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  background: #eadcc0;
+}
+
+.card-obra-imagem {
+  display: block;
+  object-fit: cover;
+}
+
+.card-obra-sem-imagem {
+  display: grid;
+  place-items: center;
+}
+
+.card-obra small {
+  color: #444;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-obra {
+    transition: none;
+  }
+
+  .card-obra:hover {
+    transform: none;
+  }
+}
