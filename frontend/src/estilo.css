@@ -1,0 +1,117 @@
+/* ---------- Estilo geral ---------- */
+body {
+  font-family: Montserrat, Tahoma, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
+    #0a3058 url("/img/background.jpeg") center / cover fixed;
+  color: #fff;
+}
+
+header {
+  background: #0a3058;
+  color: #fff;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ---------- Filtro ---------- */
+.filtro, .acoes {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button, select, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ---------- Galeria ---------- */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.item {
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgb(3 226 246 / 45%);
+  transition: transform 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgb(3 226 246 / 75%);
+}
+
+.hover-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform .25s ease;
+  cursor: pointer;
+}
+
+.hover-img:hover {
+  transform: scale(1.03);
+}
+
+.item p {
+  margin: 10px 0 4px;
+  font-weight: bold;
+}
+
+.item small {
+  color: #444;
+}
+
+.painel {
+  display: grid;
+  gap: 12px;
+  max-width: 480px;
+}
+
+.painel label, .painel .campo {
+  display: grid;
+  gap: 4px;
+}
+
+dialog {
+  max-width: min(90vw, 900px);
+  border: 0;
+  border-radius: 8px;
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 75%);
+}
+
+.obra-ampliada {
+  display: block;
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+}

@@ -9,9 +9,9 @@ class Genero(models.Model):
 
 class Obra(models.Model):
     titulo = models.CharField(max_length=200)
-    imagem = models.ImageField(upload_to="media/galeria")
+    imagem = models.ImageField(upload_to="galeria/")
     date = models.DateField(blank=True, null=True)
-    genero = models.ForeignKey(Genero, on_delete=models.CASCADE, related_name="obras")
+    genero = models.ForeignKey(Genero, on_delete=models.CASCADE, related_name="obras", blank=True, null=True)
 
 
     def __str__(self):

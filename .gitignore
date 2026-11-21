@@ -17,3 +17,6 @@ ENV/
 
 # Configurações do VSCode
 .vscode/
+
+frontend/node_modules/
+frontend/dist/
