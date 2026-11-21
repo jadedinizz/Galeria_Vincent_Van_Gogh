@@ -91,3 +91,21 @@ O `POST` envia a imagem como `multipart/form-data` e retorna `201 Created`.
 O `PATCH` aceita apenas os campos que você quer alterar e retorna `200 OK`.
 Como exercício, tente consultar `/api/obras/?genero=abc` e encontre no
 controlador a validação que produz a resposta `400 Bad Request`.
+
+## Estilos do frontend
+
+As variáveis em `frontend/src/styles/tema.css` definem a paleta, a tipografia,
+os raios, as bordas e os estados de interação. Importe os estilos uma vez no
+ponto de entrada e reutilize as classes de `interface.css` nos componentes:
+
+| Classe | Uso |
+| --- | --- |
+| `ui-botao` | Botão principal. Combine com `ui-botao--secundario` para ações secundárias. |
+| `ui-campo` | Campos de texto, busca, data, arquivo e seleção. |
+| `ui-modal` | Estilo compartilhado dos elementos `dialog`. Ajuste `--largura-modal` quando necessário. |
+| `ui-card` | Superfície de card. Use um `button` quando o card abrir detalhes. |
+| `ui-superficie` | Painéis, como a área de filtros. |
+
+O Fontsource fornece a Montserrat Variable no próprio build. Use ícones do
+Lucide React com `ui-icone` e `aria-hidden="true"` quando houver um rótulo
+visível para a mesma ação.

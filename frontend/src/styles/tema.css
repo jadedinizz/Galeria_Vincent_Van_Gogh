@@ -1,0 +1,27 @@
+:root {
+  --fonte-interface: 'Montserrat Variable', Montserrat, Tahoma, sans-serif;
+  --cor-azul: #0a3058;
+  --cor-creme: #fffaf1;
+  --cor-areia: #cec0a6;
+  --cor-areia-clara: #eadcc0;
+  --cor-areia-hover: #f3e6c9;
+  --cor-branca: #fff;
+  --cor-texto-suave: #444;
+  --cor-erro: #ffd6cf;
+  --cor-foco: #03e2f6;
+  --cor-fundo-imagem: rgb(0 0 0 / 45%);
+  --cor-fundo-modal: rgb(4 19 35 / 80%);
+  --raio-controle: 999px;
+  --raio-superficie: 18px;
+  --raio-modal: 24px;
+  --raio-imagem: 12px;
+  --altura-controle: 44px;
+  --tamanho-icone: 1.15rem;
+  --espessura-borda: 1px;
+  --borda-interface: var(--espessura-borda) solid var(--cor-areia);
+  --sombra-card: 0 2px 6px rgb(3 226 246 / 35%);
+  --sombra-card-hover: 0 4px 12px rgb(3 226 246 / 65%);
+  --sombra-modal: 0 18px 50px rgb(0 0 0 / 55%);
+  --duracao-interacao: 180ms;
+  --duracao-modal: 220ms;
+}

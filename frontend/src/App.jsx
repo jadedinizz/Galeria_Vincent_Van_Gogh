@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { ImagePlus, Pencil, Trash2, X } from 'lucide-react';
 import { CardObra } from './components/CardObra.jsx';
 import { FiltrosObras } from './components/FiltrosObras.jsx';
 import { ModalObra } from './components/ModalObra.jsx';
@@ -71,7 +72,9 @@ export function App() {
     <>
       <header>
         <h1>Galeria Vincent Van Gogh</h1>
-        <button aria-haspopup="dialog" onClick={() => { setErro(''); setEdicao({}); }}>Adicionar obra</button>
+        <button className="ui-botao" type="button" aria-haspopup="dialog" onClick={() => { setErro(''); setEdicao({}); }}>
+          <ImagePlus className="ui-icone" aria-hidden="true" /> Adicionar obra
+        </button>
       </header>
       <main>
         {erro && !edicao && <p role="alert">{erro}</p>}
@@ -114,26 +117,32 @@ export function App() {
           onFechar={() => { setErro(''); setEdicao(null); }}
         />
       )}
-      <dialog ref={dialogo} onClose={() => setSelecao(null)}>
+      <dialog ref={dialogo} className="ui-modal modal-detalhes" aria-labelledby="titulo-obra-detalhes" onClose={() => setSelecao(null)}>
         {selecao && (
           <>
-            <h2>{selecao.titulo}</h2>
+            <h2 id="titulo-obra-detalhes">{selecao.titulo}</h2>
             {selecao.imagem_url && <img className="obra-ampliada" src={selecao.imagem_url} alt={selecao.titulo} />}
             <p>{[selecao.genero_nome, selecao.date].filter(Boolean).join(' · ')}</p>
             {erro && <p role="alert">{erro}</p>}
             <div className="acoes">
-              <button disabled={ocupado} onClick={() => {
+              <button className="ui-botao" type="button" disabled={ocupado} onClick={() => {
                 dialogo.current.close();
                 setErro('');
                 setEdicao(selecao);
                 setSelecao(null);
-              }}>Editar</button>
-              <button disabled={ocupado} onClick={() => {
+              }}>
+                <Pencil className="ui-icone" aria-hidden="true" /> Editar
+              </button>
+              <button className="ui-botao ui-botao--secundario" type="button" disabled={ocupado} onClick={() => {
                 if (window.confirm('Excluir “' + selecao.titulo + '”?')) {
                   alterarObra(() => excluirObra(selecao.id));
                 }
-              }}>Excluir</button>
-              <button disabled={ocupado} onClick={() => setSelecao(null)}>Fechar</button>
+              }}>
+                <Trash2 className="ui-icone" aria-hidden="true" /> Excluir
+              </button>
+              <button className="ui-botao ui-botao--secundario" type="button" disabled={ocupado} onClick={() => setSelecao(null)}>
+                <X className="ui-icone" aria-hidden="true" /> Fechar
+              </button>
             </div>
           </>
         )}

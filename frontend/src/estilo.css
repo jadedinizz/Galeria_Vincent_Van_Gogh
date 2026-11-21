@@ -1,18 +1,20 @@
 /* ---------- Estilo geral ---------- */
 body {
-  font-family: Montserrat, Tahoma, sans-serif;
+  font-family: var(--fonte-interface);
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
-    #0a3058 url("/img/background.jpeg") center / cover fixed;
-  color: #fff;
+  background: linear-gradient(var(--cor-fundo-imagem), var(--cor-fundo-imagem)),
+    var(--cor-azul) url("/img/background.jpeg") center / cover fixed;
+  color: var(--cor-branca);
 }
 
 header {
-  background: #0a3058;
-  color: #fff;
+  background: var(--cor-azul);
+  color: var(--cor-branca);
   padding: 15px 25px;
   display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -51,19 +53,15 @@ button {
   gap: 18px;
 }
 
-dialog {
-  max-width: min(90vw, 900px);
-  border: 0;
-  border-radius: 8px;
-}
-
-dialog::backdrop {
-  background: rgb(0 0 0 / 75%);
+.modal-detalhes {
+  --largura-modal: 56rem;
 }
 
 .obra-ampliada {
   display: block;
   max-width: 100%;
   max-height: 65vh;
+  margin-inline: auto;
+  border-radius: var(--raio-imagem);
   object-fit: contain;
 }
