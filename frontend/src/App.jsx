@@ -1,32 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { ModalObra } from './components/ModalObra.jsx';
 import { excluirObra, listarGeneros, listarObras, salvarObra } from './api.js';
-
-function FormularioObra({ obra, generos, ocupado, onSalvar, onCancelar }) {
-  return (
-    <form className="painel" onSubmit={(event) => {
-      event.preventDefault();
-      const dados = new FormData(event.currentTarget);
-      if (!dados.get('imagem').size) dados.delete('imagem');
-      onSalvar(obra?.id, dados);
-    }}>
-      <h2>{obra ? 'Editar obra' : 'Adicionar obra'}</h2>
-      <label>Título <input name="titulo" defaultValue={obra?.titulo} maxLength={200} required /></label>
-      <label>Data <input name="date" type="date" defaultValue={obra?.date || ''} /></label>
-      <div className="campo">
-        <label htmlFor="obra-genero">Gênero</label>
-        <select id="obra-genero" name="genero" defaultValue={obra?.genero || ''} required>
-          <option value="">Selecione</option>
-          {generos.map((genero) => <option key={genero.id} value={genero.id}>{genero.nome}</option>)}
-        </select>
-      </div>
-      <label>Imagem <input name="imagem" type="file" accept="image/*" required={!obra} /></label>
-      <div className="acoes">
-        <button disabled={ocupado || !generos.length}>Salvar</button>
-        <button type="button" disabled={ocupado} onClick={onCancelar}>Cancelar</button>
-      </div>
-    </form>
-  );
-}
 
 export function App() {
   const [generos, setGeneros] = useState([]);
@@ -87,19 +61,10 @@ export function App() {
     <>
       <header>
         <h1>Galeria Vincent Van Gogh</h1>
-        <button onClick={() => { setErro(''); setEdicao({}); }}>Adicionar obra</button>
+        <button aria-haspopup="dialog" onClick={() => { setErro(''); setEdicao({}); }}>Adicionar obra</button>
       </header>
       <main>
-        {erro && <p role="alert">{erro}</p>}
-        {edicao && (
-          <>
-            <FormularioObra key={edicao.id || 'nova'} obra={edicao.id ? edicao : null}
-              generos={generos} ocupado={ocupado}
-              onSalvar={(id, dados) => alterarObra(() => salvarObra(id, dados))}
-              onCancelar={() => setEdicao(null)} />
-            {!generos.length && <p>Cadastre um gênero no painel administrativo para adicionar obras.</p>}
-          </>
-        )}
+        {erro && !edicao && <p role="alert">{erro}</p>}
         <h2>Obras</h2>
         <div className="filtro">
           <label htmlFor="filtro-genero">Filtrar por gênero</label>
@@ -121,6 +86,17 @@ export function App() {
           </div>
         )}
       </main>
+      {edicao && (
+        <ModalObra
+          key={edicao.id || 'nova'}
+          obra={edicao.id ? edicao : null}
+          generos={generos}
+          ocupado={ocupado}
+          erro={erro}
+          onSalvar={(id, dados) => alterarObra(() => salvarObra(id, dados))}
+          onFechar={() => { setErro(''); setEdicao(null); }}
+        />
+      )}
       <dialog ref={dialogo} onClose={() => setSelecao(null)}>
         {selecao && (
           <>
@@ -129,7 +105,12 @@ export function App() {
             <p>{[selecao.genero_nome, selecao.date].filter(Boolean).join(' · ')}</p>
             {erro && <p role="alert">{erro}</p>}
             <div className="acoes">
-              <button disabled={ocupado} onClick={() => { setEdicao(selecao); setSelecao(null); }}>Editar</button>
+              <button disabled={ocupado} onClick={() => {
+                dialogo.current.close();
+                setErro('');
+                setEdicao(selecao);
+                setSelecao(null);
+              }}>Editar</button>
               <button disabled={ocupado} onClick={() => {
                 if (window.confirm('Excluir “' + selecao.titulo + '”?')) {
                   alterarObra(() => excluirObra(selecao.id));

@@ -88,17 +88,6 @@ button {
   color: #444;
 }
 
-.painel {
-  display: grid;
-  gap: 12px;
-  max-width: 480px;
-}
-
-.painel label, .painel .campo {
-  display: grid;
-  gap: 4px;
-}
-
 dialog {
   max-width: min(90vw, 900px);
   border: 0;
