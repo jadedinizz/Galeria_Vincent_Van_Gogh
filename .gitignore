@@ -12,8 +12,6 @@ staticfiles/
 venv/
 ENV/
 .env
-docker-compose.yml
-Dockerfile
 # Logs
 *.log
 

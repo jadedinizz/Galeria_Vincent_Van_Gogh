@@ -32,74 +32,54 @@ Uma **galeria de imagens com filtros** das obras de Vincent van Gogh, onde o usu
 
 ---
 
-## 📂 Estrutura de Diretórios
+## Estrutura do monorepo
 
-```plaintext
-GALERIA_VINCENT_VAN_GOGH/
-│── core/                  # App principal (models, views, urls, templates, static)
-│   ├── migrations/        
-│   ├── static/core/       # Arquivos estáticos (CSS, JS)
-│   │   ├── css/estilo.css
-│   │   └── js/script.js
-│   ├── templates/core/    # Templates HTML
-│   │   ├── base.html
-│   │   ├── index.html
-│   │   ├── detalhe.html
-│   │   ├── form_image.html
-│   │   └── confirmar_delete.html
-│   ├── models.py          # Tabelas adicionadas ao banco 
-│   ├── views.py           # Lógica da aplicação
-│   ├── urls.py
-│   └── forms.py
-│
-│── galeria_vincent_van_gogh/   # Configurações do projeto
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│
-│── media/                 # Uploads das imagens das obras (docker)
-│── manage.py
-│── requirements.txt
-│── Dockerfile
-│── docker-compose.yml
-│── .env
-└── .gitignore
+```text
+.
+├── backend/
+│   ├── core/                    # Modelos, views, formulários e migrações
+│   ├── galeria_vincent_van_gogh/  # Configuração e rotas do Django
+│   ├── manage.py
+│   ├── requirements.txt
+│   └── Dockerfile
+├── frontend/
+│   ├── templates/core/          # Páginas HTML renderizadas pelo Django
+│   └── static/core/             # CSS e JavaScript
+└── docker-compose.yml           # Django e PostgreSQL
 ```
----
 
-## 🎯 Expectativas do Projeto
+O Django carrega os templates e os arquivos estáticos de `frontend/`.
+O frontend é servido pelo próprio Django e não precisa de um processo de build.
 
-- Aplicação funcional rodando corretamente.
-- Galeria responsiva e organizada.
-- Filtros funcionando sem recarregar a página (JavaScript).
-- Banco conectado e funcionando.
+## Como rodar com Docker
 
---- 
-## 🚀 Como Rodar o Projeto Localmente
+Na raiz do repositório, copie `.env.example` para `.env` e preencha
+`POSTGRES_PASSWORD` e `DJANGO_SECRET_KEY`. Para reutilizar um volume
+PostgreSQL existente, informe a senha já configurada nessa instância.
+Depois, execute:
 
-**1. Clonar repositório:**
+```sh
+docker compose up --build -d
+docker compose exec web python manage.py migrate
 ```
-git clone https://github.com/jadedinizz/Galeria_Vincent_Van_Gogh.git
-cd Galeria_Vincent_Van_Gogh
-```
-**2. Criar ambiente virtual:**
-```
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
-```
-**3. Instalar dependências:**
-```
-pip install -r requirements.txt
-```
-**4. Migrar banco de dados:**
-```
-python manage.py migrate
-```
-**5. Rodar servidor:**
-```
-python manage.py runserver
-```
-👉 Acesse em: [http://localhost:8001/](http://localhost:8001/)
 
+Acesse [http://localhost:8001/](http://localhost:8001/). Para criar uma conta
+administrativa, execute `docker compose exec web python manage.py createsuperuser`
+e acesse [http://localhost:8001/admin/](http://localhost:8001/admin/).
+Cadastre os gêneros no admin antes de adicionar obras pela galeria.
 
+## Como rodar sem Docker
+
+Na raiz do repositório, crie e ative um ambiente virtual. Com um banco
+PostgreSQL já criado, exporte `POSTGRES_DB`, `POSTGRES_USER`,
+`POSTGRES_PASSWORD`, `POSTGRES_HOST` e `POSTGRES_PORT` com os dados da sua
+instância. Exporte também `DJANGO_SECRET_KEY` com uma chave para o Django.
+Em seguida, execute:
+
+```sh
+python -m pip install -r backend/requirements.txt
+python backend/manage.py migrate
+python backend/manage.py runserver 8001
+```
+
+Os uploads ficam em `backend/media/` ou no volume de mídia do Docker.

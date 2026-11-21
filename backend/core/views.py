@@ -36,7 +36,7 @@ def editar_imagem(request, pk):
             return redirect("index")
     else:
         form = ImagemForm(instance=imagem)
-    return render(request, "core/form_imagem.html", {"form": form, "editar": True})
+    return render(request, "core/form_image.html", {"form": form, "editar": True})
 
 def deletar_imagem(request, pk):
     imagem = get_object_or_404(Obra, pk=pk)
